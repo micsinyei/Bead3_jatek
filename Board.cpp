@@ -2,17 +2,17 @@
 #include "graphics.hpp"
 #include <iostream>
 #include "Circle.hpp"
+#include "Logic.hpp"
 using namespace genv;
 Board::Board(int kx, int ky, int w, int h):Widget(kx,ky,w,h) {
     initBoard();
-    boxsize=70;
-    circlesize=boxsize/2-5;
-    width=x+7*boxsize;
-    //b[1][5]=1;
-    //b[6][5]=2;
+    boxsize=70; ///egy darab negyzet merete
+    circlesize=boxsize/2-5; /// a kor beleferjen a nyeztebe
+    width=x+7*boxsize; ///szelesseg a dobozok alapjan
     Draw();
 }
 void Board::initBoard(){
+    /// Board feltoltese 3-sokkal mivel a jatekos majd 0 és 1 lesz
     for(int i=0; i<COLUMNS; i++) {
         for(int j=0; j<ROWS; j++) {
             b[i][j]=3;
@@ -45,15 +45,16 @@ void Board::Draw() const {
     gout<<color(255,255,255);
     for(int i=0; i<7; i++) {
         for(int j=0; j<6; j++) {
+        ///ha üres
             if( b[i][j]==3) {
                 gout<<move_to(x+(boxsize*i),y+(boxsize*j))<<color(0,0,204)<<box(boxsize,boxsize);
                 gout <<color(255,255,255);
                 Circle(x+boxsize/2+(boxsize*i),y+boxsize/2+(boxsize*j),circlesize);
-            } else if( b[i][j]==1) {
+            } else if( b[i][j]==0) {/// egyik játékos
                 gout<<move_to(x+(boxsize*i),y+(boxsize*j))<<color(0,0,204)<<box(boxsize,boxsize);
                 gout <<color(228,0,0);
                 Circle(x+boxsize/2+(boxsize*i),y+boxsize/2+(boxsize*j),circlesize);
-            } else if( b[i][j]==0) {
+            } else if( b[i][j]==1) {/// másik jatekos
                 gout<<move_to(x+(boxsize*i),y+(boxsize*j))<<color(0,0,204)<<box(boxsize,boxsize);
                 gout <<color(255,255,0);
                 Circle(x+boxsize/2+(boxsize*i),y+boxsize/2+(boxsize*j),circlesize);
@@ -66,6 +67,7 @@ void Board::Draw() const {
 }
 void Board::addGamePiece(const int col, const int gamePiece) {
     int ind=ROWS-1;
+    /// kovetkezo ures helyre teszi
     while(b[col][ind]!=3) {
         ind--;
     }
@@ -129,8 +131,9 @@ bool Board::CheckWinner(int turn) {
 
     return false;
 }
-bool Board::Islegalmove(const int col) {
-    int ind=ROWS-1;
+bool Board::Islegalmove(int col) {
+    /// az oszlop nem telt-e be
+   /* int ind=ROWS-1;
     while(b[col][ind]!=3) {
         ind--;
     }
@@ -138,11 +141,30 @@ bool Board::Islegalmove(const int col) {
         return false;
     } else {
         return true;
+    }*/
+    if(b[col][0]==3){
+        return true;
+    }
+    else{
+        return false;
     }
 }
-bool Board::isFull() const{
-int index=0;
+
+bool Board::isFull() {
+/// a board betelt-e
+
+/*int index=0;
     while(b[index][0]!=3){
+        index++;
+    }
+    if(index<COLUMNS){
+        return false;
+    }
+    else{
+        return true;
+    }*/
+    int index=0;
+    while(Islegalmove(index)==false){
         index++;
     }
     if(index<COLUMNS){

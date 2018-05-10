@@ -1,7 +1,6 @@
 #ifndef BOARD_HPP_INCLUDED
 #define BOARD_HPP_INCLUDED
 #include "widgets.hpp"
-
 class Board: public  Widget {
 protected:
     int b[7][6];
@@ -20,8 +19,8 @@ public:
     }
     void addGamePiece( const int col, const int gamePiece);
     bool CheckWinner(int turn);
-    bool Islegalmove(const int col);
-    virtual bool isFull()const;
+    bool Islegalmove( int col);
+    virtual bool isFull();
 };
 
 
