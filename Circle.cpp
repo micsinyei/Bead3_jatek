@@ -4,15 +4,15 @@
 using namespace genv;
 Circle::Circle(int x,int y,int rad):Widget(x,y,0,0){
 r=rad;
-y0=r;
-x0=0;
-p=3-2*r;
 Draw();
 }
 void Circle::Handle(genv::event ev){
 
 }
 void Circle::Draw() const {
+int y0=r;
+int x0=0;
+int p=3-2*r;
 while(x0 <= y0)
     {
         gout<<move_to(x+x0,y+y0)<<line_to(x-x0,y+y0)<<dot;
@@ -34,5 +34,10 @@ while(x0 <= y0)
 
 }
     }
-    gout<< refresh;
+}
+void Circle::Setx(int newx){
+    x=newx;
+}
+void Circle::Sety(int newy){
+    y=newy;
 }
