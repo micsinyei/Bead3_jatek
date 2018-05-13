@@ -1,5 +1,4 @@
 #include "Circle.hpp"
-#include "graphics.hpp"
 #include <iostream>
 using namespace genv;
 Circle::Circle(int x,int y,int rad):Widget(x,y,0,0){

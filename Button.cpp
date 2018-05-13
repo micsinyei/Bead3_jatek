@@ -1,5 +1,4 @@
 #include "Button.hpp"
-#include "graphics.hpp"
 #include <iostream>
 using namespace genv;
 Button::Button(int x, int y, int w, int h, std::string label_i,Icon type):Widget(x,y,w,h) {

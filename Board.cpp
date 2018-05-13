@@ -1,8 +1,5 @@
 #include "Board.hpp"
-#include "graphics.hpp"
 #include <iostream>
-#include "Circle.hpp"
-#include "Logic.hpp"
 using namespace genv;
 Board::Board(int kx, int ky, int w, int h):Widget(kx,ky,w,h) {
     initBoard();

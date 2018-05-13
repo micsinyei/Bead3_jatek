@@ -1,4 +1,3 @@
-#include "graphics.hpp"
 #include <iostream>
 #include <string>
 #include "Connect4.hpp"
@@ -8,12 +7,12 @@ Connect4::Connect4(int x,int y) {
     ///ablak megnyitása
     gout.open(x,y);
     ///Pálya
-    b=new Board(24,125,420,420);
+    b=new Board(10,50,420,420);
     gameOver=false;
     exit=false;
     ///gombok
-    b_exit= new Button(525,300,100,20,"Kilepes",TEXT);
-    newgame=new Button(525,270,100,20,"Uj jatek",TEXT);
+    b_exit= new Button(510,450,80,20,"Kilepes",TEXT);
+    newgame=new Button(510,50,80,20,"Uj jatek",TEXT);
     b_exit->Draw();
     newgame->Draw();
     ///kilépés
@@ -23,7 +22,7 @@ Connect4::Connect4(int x,int y) {
     });
     ///uj jatek
     newgame->Action([this]() {
-        gout<<move_to(0,0)<<color(0,0,0)<<box_to(799,599);
+        gout<<move_to(0,0)<<color(0,0,0)<<box_to(559,479);
         turn=0;
         gameOver=false;
         b->initBoard();
@@ -37,7 +36,7 @@ Connect4::Connect4(int x,int y) {
     ///labels
     player1= new Label(10,10,100,20,"Jatekos 1.",inactive);
     player2= new Label(400,10,100,20,"Jatekos 2.",inactive);
-    eredmeny = new Label(150,10,200,20,"A gyoztes",inactive);
+    eredmeny = new Label(155,10,200,20,"A gyoztes",inactive);
     player1->Draw();
     player2->Draw();
     gout << refresh;
@@ -81,7 +80,7 @@ void Connect4::event_loop() {
                             if(b->CheckWinner(turn)) {
                                 gameOver=true;
                                 winner=turn;
-                                eredmeny->SetText("A gyoztes "+std::to_string(winner+1)+". jatekos");
+                                eredmeny->SetText("A gyoztes ");
                                 eredmeny->Draw();
 
                             }
@@ -99,6 +98,7 @@ void Connect4::event_loop() {
             //std::cout<<ev.keycode<<std::endl;
             if(ev.keycode==key_escape) {
                 b_exit->CallAction();
+                break;
             } else if(ev.keycode==114) {
                 newgame->CallAction();
             }

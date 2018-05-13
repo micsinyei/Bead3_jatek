@@ -1,6 +1,8 @@
 #ifndef BOARD_HPP_INCLUDED
 #define BOARD_HPP_INCLUDED
 #include "widgets.hpp"
+#include "Circle.hpp"
+
 class Board: public  Widget {
 protected:
     int b[7][6];

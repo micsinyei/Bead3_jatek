@@ -1,5 +1,4 @@
 #include "label.hpp"
-#include "graphics.hpp"
 #include <iostream>
 #include <string>
 using namespace genv;

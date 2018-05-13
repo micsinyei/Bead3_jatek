@@ -1,6 +1,5 @@
 #ifndef WIDGETS_HPP_INCLUDED
 #define WIDGETS_HPP_INCLUDED
-
 #include "graphics.hpp"
 
 class Widget {
