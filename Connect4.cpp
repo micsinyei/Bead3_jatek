@@ -80,7 +80,7 @@ void Connect4::event_loop() {
                             if(b->CheckWinner(turn)) {
                                 gameOver=true;
                                 winner=turn;
-                                eredmeny->SetText("A gyoztes ");
+                                eredmeny->SetText("A gyoztes "+std::to_string(winner+1)+".jatekos");
                                 eredmeny->Draw();
 
                             }
